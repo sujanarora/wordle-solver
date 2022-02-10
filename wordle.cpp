@@ -102,13 +102,13 @@ void Wordle::getGuesses(){
     if (turnCounter == 1){
         cout << "Make an initial guess. Suggestions:\n"
         << "1. raine\n2. arose\n3. arioel\n4. orate\n5. irate\n6. arise\n7. soare\n8. raile\n9. raise\n10. roate\n .\n .\n .\n"
-        <<"Type guess (ex. 'soare'):\n> ";
+        <<"Type guess (ex. 'irate'):\n> ";
         /*source: https://artofproblemsolving.com/news/articles/the-math-of-winning-wordle*/
     }
     else{
         cout << "Turn " << turnCounter << " - Best words:\n";
         printGuesses();
-        cout << "Type 'exit' to exit\nType guess (ex. 'soare'):\n> ";
+        cout << "Type 'exit' to exit\nType guess:\n> ";
     }
     
 
