@@ -37,7 +37,7 @@ struct Wordle{
 }; // Wordle
 
 void Wordle::printGuesses(){
-    cout << "word  | language frequency\n--------------------\n";
+    cout << "word  | language frequency\n---------------------------\n";
     for (unsigned i = 0; i < v.size(); ++i){
         cout << v[i].word << " | " << v[i].freq << "\n";
         if (i >= 20) break;
@@ -108,35 +108,35 @@ void Wordle::getGuesses(){
     else{
         cout << "Turn " << turnCounter << " - Best words:\n";
         printGuesses();
-        cout << "Type guess (ex. 'soare')\nIf wordle is complete type 'done'\n> ";
+        cout << "Type 'exit' to exit\nType guess (ex. 'soare'):\n> ";
     }
     
 
     
     cin >> currWord;
     
-    if (currWord == "done") exit(0);
+    if (currWord == "exit") exit(0);
     
-//    bool validWord = false;
-//    for (unsigned i = 0; i < v.size(); ++i){
-//        if (currWord == v[i].word) validWord = true;
-//    }
-//    if (!validWord){
-//        cout << "Error: invalid input";
-//        exit(1);
-//    }
-    if (currWord.size() != 5){
+    bool validWord = false;
+    for (unsigned i = 0; i < v.size(); ++i){
+        if (currWord == v[i].word) validWord = true;
+    }
+    if (!validWord){
         cout << "Error: invalid input";
         exit(1);
     }
+//    if (currWord.size() != 5){
+//        cout << "Error: invalid input";
+//        exit(1);
+//    }
     
-    cout << "\nGuess: " << currWord << ". Type position information\n"
+    cout << "\nGuess: " << currWord << ". Type position information\nType 'exit' to exit\n"
     << BOLDGREEN << "g"<< RESET << " = green, "<< BOLDYELLOW << "y" << RESET << " = yellow, x = gray "<<
     "(ex. x"<< BOLDGREEN << "g" << BOLDYELLOW << "yy" << RESET << "x)\n";
     
     cout << "> ";
     cin >> currColor;
-    
+    if (currColor == "exit") exit(0);
     
     eliminateData();
     
