@@ -6,7 +6,8 @@
 //
 
 // Purpose: have two lists (one with common words and another with less
-// common words) and want to merge them into one list alphabetically sorted
+// common words) and want to merge them into one list sorted first by weight
+// and second alphabetically if there are ties
 
 
 // Usage ./mergeLists < wordsweights.txt > words.txt
@@ -22,7 +23,8 @@ struct WordWeight{
 };
 
 bool compareFunc(WordWeight &lhs, WordWeight &rhs){
-    return (lhs.word < rhs.word);
+    if (lhs.freq != rhs.freq) return (lhs.freq > rhs.freq);
+    else return (lhs.word < rhs.word);
 }
 
 int main(/*int argc, const char * argv[]*/) {
