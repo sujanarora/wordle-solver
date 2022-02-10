@@ -1,0 +1,48 @@
+//
+//  main.cpp
+//  wordle-solver
+//
+//  Created by Sujan Arora on 2/10/22.
+//
+
+// Purpose: have two lists (one with common words and another with less
+// common words) and want to merge them into one list alphabetically sorted
+
+
+// Usage ./mergeLists < wordsweights.txt > words.txt
+#include <iostream>
+#include <string>
+#include <vector>
+#include <iomanip>
+using namespace std;
+
+struct WordWeight{
+    std::string word;
+    long double freq;
+};
+
+bool compareFunc(WordWeight &lhs, WordWeight &rhs){
+    return (lhs.word < rhs.word);
+}
+
+int main(/*int argc, const char * argv[]*/) {
+    // insert code here...
+    vector<WordWeight> v;
+    v.resize(12972);
+    std::string s;
+    long double f;
+    size_t counter = 0;
+    
+    while (cin >> s >> f){
+        v[counter].word = s;
+        v[counter].freq = f;
+        ++counter;
+    }
+    
+    sort(v.begin(), v.end(), compareFunc);
+    
+    for (size_t i = 0; i < v.size(); ++i){
+        cout << v[i].word << " " << v[i].freq << "\n";
+    }
+    return 0;
+}
