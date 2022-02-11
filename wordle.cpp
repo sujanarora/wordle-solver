@@ -107,7 +107,7 @@ void Wordle::eliminateData(){
 void Wordle::getGuesses(){
     if (turnCounter == 1){
         cout << "Make an initial guess. Suggestions:\n"
-        << "1. raine\n2. arose\n3. arioel\n4. orate\n5. irate\n6. arise\n7. soare\n8. raile\n9. raise\n10. roate\n .\n .\n .\n"
+        << "1. raine\n2. arose\n3. ariel\n4. orate\n5. irate\n6. arise\n7. soare\n8. raile\n9. raise\n10. roate\n .\n .\n .\n"
         <<"Type guess (ex. 'irate'):\n> ";
         /*source: https://artofproblemsolving.com/news/articles/the-math-of-winning-wordle*/
     }
