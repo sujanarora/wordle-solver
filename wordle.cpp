@@ -27,6 +27,7 @@ struct WordWeight{
 
 struct Wordle{
     vector<WordWeight> v;
+    vector<string> wordBank;
     string currWord;
     string currColor;
     size_t turnCounter = 1;
@@ -46,6 +47,11 @@ void Wordle::printGuesses(){
 
 void Wordle::eliminateData(){
     vector<char> allowRepeatLetters;
+    for (unsigned i = 0; i < currColor.size(); ++i){
+        if (currColor[i] == 'g'){
+            allowRepeatLetters.push_back(currWord[i]);
+        }
+    }
     for (unsigned i = 0; i < currColor.size(); ++i){
         vector<WordWeight> wordslist;
         if (currColor[i] == 'g'){
@@ -118,17 +124,13 @@ void Wordle::getGuesses(){
     if (currWord == "exit") exit(0);
     
     bool validWord = false;
-    for (unsigned i = 0; i < v.size(); ++i){
-        if (currWord == v[i].word) validWord = true;
+    for (unsigned i = 0; i < wordBank.size(); ++i){
+        if (currWord == wordBank[i]) validWord = true;
     }
     if (!validWord){
         cout << "Error: invalid input";
         exit(1);
     }
-//    if (currWord.size() != 5){
-//        cout << "Error: invalid input";
-//        exit(1);
-//    }
     
     cout << "\nGuess: " << currWord << ". Type position information\nType 'exit' to exit\n"
     << BOLDGREEN << "g"<< RESET << " = green, "<< BOLDYELLOW << "y" << RESET << " = yellow, x = gray "<<
@@ -145,9 +147,6 @@ void Wordle::getGuesses(){
 
 
 int main(/*int argc, const char ** argv*/){
-//    std::ios_base::sync_with_stdio(false);
-//    xcode_redirect(argc, argv);
-    
     Wordle w;
     
     // Read in to data vector
@@ -158,11 +157,14 @@ int main(/*int argc, const char ** argv*/){
         exit(1);
     } // if
     w.v.resize(12972);
+    w.wordBank.resize(12972);
     std::string s;
     long double f;
     unsigned counter = 0;
+    
     while (file >> s >> f){
         w.v[counter].word = s;
+        w.wordBank[counter] = s;
         w.v[counter].freq = f;
         ++counter;
     } // while
