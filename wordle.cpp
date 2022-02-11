@@ -83,17 +83,26 @@ void Wordle::eliminateData(){
             for (unsigned l = 0; l < allowRepeatLetters.size(); ++l){
                 if (currWord[i] == allowRepeatLetters[l]) letterInWord = true;
             }
-            if (letterInWord) break;
-            for (unsigned j = 0; j < v.size(); ++j){
-                char doesntHave = currWord[i]; // right letter, wrong pos
-                bool shouldPushBack = true;
-                for (unsigned k = 0; k < currWord.size(); ++k){
-                    if (v[j].word[k] == doesntHave){
-                        shouldPushBack = false;
+            if (letterInWord) {
+                for (unsigned j = 0; j < v.size(); ++j){
+                    if (v[j].word[i] != currWord[i]){
+                        wordslist.push_back(v[j]);
                     }
-                } // for k: chars in currWord
-                if (shouldPushBack) wordslist.push_back(v[j]);
-            } // for j: words in v
+                } // for j: words in v
+            } // delete all words with a lettter in the wrong position
+            else{
+                for (unsigned j = 0; j < v.size(); ++j){
+                    char doesntHave = currWord[i]; // right letter, wrong pos
+                    bool shouldPushBack = true;
+                    for (unsigned k = 0; k < currWord.size(); ++k){
+                        if (v[j].word[k] == doesntHave){
+                            shouldPushBack = false;
+                        }
+                    } // for k: chars in currWord
+                    if (shouldPushBack) wordslist.push_back(v[j]);
+                } // for j: words in v
+            }
+            
         } // gray
         else{
             cout << "Error: invalid input";
