@@ -1,5 +1,5 @@
 # Wordle Solver in C++
-##Usage
+## Usage
 type the word used and the colors corresponding to each letter in the word
 
 y = yellow
